@@ -38,7 +38,54 @@ function createLine(data) {
   return getStmt.get(info.lastInsertRowid);
 }
 
+// Returns a single line by id
+function getLineById(id) {
+  const stmt = db.prepare('SELECT * FROM lines WHERE id = ?');
+  return stmt.get(id) || null;
+}
+
+// Updates a line by id, returns the updated record or null if not found
+function updateLine(id, data) {
+  const existing = getLineById(id);
+  if (!existing) return null;
+
+  const stmt = db.prepare(`
+    UPDATE lines
+    SET name = @name,
+        type = @type,
+        color = @color,
+        description = @description,
+        is_active = @is_active,
+        updated_at = datetime('now')
+    WHERE id = @id
+  `);
+
+  stmt.run({
+    id,
+    name:        data.name        !== undefined ? data.name        : existing.name,
+    type:        data.type        !== undefined ? data.type        : existing.type,
+    color:       data.color       !== undefined ? data.color       : existing.color,
+    description: data.description !== undefined ? data.description : existing.description,
+    is_active:   data.is_active   !== undefined ? data.is_active   : existing.is_active,
+  });
+
+  return getLineById(id);
+}
+
+// Deletes a line by id, returns true or null if not found
+function deleteLine(id) {
+  const existing = getLineById(id);
+  if (!existing) return null;
+
+  const stmt = db.prepare('DELETE FROM lines WHERE id = ?');
+  stmt.run(id);
+  return true;
+}
+
 module.exports = {
   getAllLines,
+  getLineById,
   createLine,
+  updateLine,
+  deleteLine,
 };
