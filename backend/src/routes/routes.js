@@ -19,10 +19,4 @@ router.get('/', (req, res) => {
   res.status(200).json(result);
 });
 
-// GET /api/routes/transfers
-router.get('/transfers', (req, res) => {
-  const points = routeService.getTransferPoints();
-  res.status(200).json(points);
-});
-
 module.exports = router;

@@ -4,6 +4,12 @@ const stationService = require('../services/stationService');
 const lineService = require('../services/lineService');
 const { validateCreateStation, validateUpdateStation } = require('../validators/stationValidator');
 
+// GET /api/stations?q=<search>
+router.get('/', (req, res) => {
+  const stations = stationService.getAllStations(req.query.q || '');
+  res.status(200).json(stations);
+});
+
 // GET /api/stations/:id
 router.get('/:id', (req, res) => {
   const station = stationService.getStationById(Number(req.params.id));

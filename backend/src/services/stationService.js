@@ -1,5 +1,19 @@
 const db = require('../db/database');
 
+// Returns all stations, optionally filtered by name search query
+function getAllStations(query = '') {
+  let sql = 'SELECT * FROM stations';
+  const params = [];
+
+  if (query) {
+    sql += ' WHERE name LIKE ?';
+    params.push(`%${query}%`);
+  }
+
+  sql += ' ORDER BY line_id ASC, order_number ASC';
+  return db.prepare(sql).all(params);
+}
+
 // Returns all stations for a given line, ordered by order_number
 function getStationsByLine(lineId) {
   const stmt = db.prepare(
@@ -72,6 +86,7 @@ function deleteStation(id) {
 }
 
 module.exports = {
+  getAllStations,
   getStationsByLine,
   getStationById,
   createStation,
