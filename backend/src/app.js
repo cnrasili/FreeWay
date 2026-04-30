@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
+const swaggerUi = require('swagger-ui-express');
 
+const swaggerSpec = require('../swagger');
 const linesRouter = require('./routes/lines');
 const stationsRouter = require('./routes/stations');
 const routesRouter = require('./routes/routes');
@@ -10,6 +12,9 @@ const app = express();
 
 // Parse incoming JSON requests
 app.use(express.json());
+
+// Swagger UI
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Serve frontend static files
 app.use(express.static(path.join(__dirname, '../../frontend')));
