@@ -109,21 +109,13 @@ const lines = [
   },
   // line_id: 13
   {
-    name: 'Marmaray B1 Halkalı-Gebze',
-    type: 'marmaray',
-    color: '#9E9E9E',
-    description: 'Silver commuter rail line crossing the Bosphorus underground.',
-    is_active: 1,
-  },
-  // line_id: 15
-  {
     name: 'T3 Kadıköy-Moda (Nostalgic)',
     type: 'tram',
     color: '#825E2D',
     description: 'Brown nostalgic tram line in Kadıköy.',
     is_active: 1,
   },
-  // line_id: 16
+  // line_id: 14
   {
     name: 'T4 Topkapı-Mescid-i Selam',
     type: 'tram',
@@ -131,7 +123,7 @@ const lines = [
     description: 'Orange tram line from Topkapı to Mescid-i Selam.',
     is_active: 1,
   },
-  // line_id: 17
+  // line_id: 15
   {
     name: 'T5 Eminönü-Alibeyköy Cep Otogarı',
     type: 'tram',
@@ -139,7 +131,23 @@ const lines = [
     description: 'Lila tram line following the Golden Horn coast.',
     is_active: 1,
   },
-  // line_id: 19
+  // line_id: 16
+  {
+    name: 'Marmaray B1 Halkalı-Gebze',
+    type: 'marmaray',
+    color: '#9E9E9E',
+    description: 'Silver commuter rail line crossing the Bosphorus underground.',
+    is_active: 1,
+  },
+  // line_id: 17
+  {
+    name: 'Marmaray B2 Halkalı-Bahçeşehir',
+    type: 'marmaray',
+    color: '#9E9E9E',
+    description: 'Silver suburban rail line from Halkalı to Bahçeşehir.',
+    is_active: 1,
+  },
+  // line_id: 18
   {
     name: 'Metrobüs Beylikdüzü-Söğütlüçeşme',
     type: 'metrobus',
@@ -147,54 +155,6 @@ const lines = [
     description: 'Mustard yellow BRT line crossing continents.',
     is_active: 1,
   },
-  // line_id: 20
-  {
-    name: 'F1 Taksim-Kabataş',
-    type: 'funicular',
-    color: '#A2A4A6',
-    description: 'Light grey funicular connecting Taksim and Kabataş.',
-    is_active: 1,
-  },
-  // line_id: 25
-  {
-    name: 'F2 Karaköy-Beyoğlu (Tünel)',
-    type: 'funicular',
-    color: '#8B1A1A',
-    description: 'Historic bordeaux funicular connecting Karaköy and Beyoğlu.',
-    is_active: 1,
-  },
-  // line_id: 26
-  {
-    name: 'F3 Seyrantepe-Vadi İstanbul',
-    type: 'funicular',
-    color: '#C0A062',
-    description: 'Beige funicular line to Vadi İstanbul.',
-    is_active: 1,
-  },
-  // line_id: 27
-  {
-    name: 'F4 Boğaziçi Üni.-Aşiyan',
-    type: 'funicular',
-    color: '#00AEEF',
-    description: 'Cyan funicular connecting Boğaziçi University to Aşiyan coast.',
-    is_active: 1,
-  },
-  // line_id: 28
-  {
-    name: 'TF1 Maçka-Taşkışla',
-    type: 'cablecar',
-    color: '#8DC63F',
-    description: 'Light green cable car line over Democracy Park.',
-    is_active: 1,
-  },
-  // line_id: 29
-  {
-    name: 'TF2 Eyüp-Piyer Loti',
-    type: 'cablecar',
-    color: '#00B0CA',
-    description: 'Turquoise cable car line to Pierre Loti hill.',
-    is_active: 1,
-  }
 ];
 
 const insertLines = db.transaction((lines) => {

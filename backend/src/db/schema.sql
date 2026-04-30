@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS lines (
   id          INTEGER PRIMARY KEY AUTOINCREMENT,
   name        TEXT    NOT NULL,
-  type        TEXT    NOT NULL CHECK(type IN ('metro', 'tram', 'metrobus', 'marmaray', 'funicular')),
+  type        TEXT    NOT NULL CHECK(type IN ('metro', 'tram', 'metrobus', 'marmaray', 'funicular', 'cablecar')),
   color       TEXT    NOT NULL DEFAULT '#000000',
   description TEXT,
   is_active   INTEGER NOT NULL DEFAULT 1 CHECK(is_active IN (0, 1)),
