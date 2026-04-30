@@ -1,0 +1,21 @@
+{
+  "name": "freeway",
+  "version": "1.0.0",
+  "description": "A web-based route planner for traffic-free public transit lines (metro, tram, metrobus, Marmaray, etc.). Users can manage transit lines and stops, then find the least-transfer route between two stops.",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cnrasili/FreeWay.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cnrasili/FreeWay/issues"
+  },
+  "homepage": "https://github.com/cnrasili/FreeWay#readme"
+}
