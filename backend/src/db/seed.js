@@ -1,9 +1,9 @@
 const db = require('./database');
 
 // Clear existing data
-db.exec('DELETE FROM stops');
+db.exec('DELETE FROM stations');
 db.exec('DELETE FROM lines');
-db.exec("DELETE FROM sqlite_sequence WHERE name IN ('stops', 'lines')");
+db.exec("DELETE FROM sqlite_sequence WHERE name IN ('stations', 'lines')");
 
 // Insert lines
 const insertLine = db.prepare(`
@@ -42,21 +42,21 @@ const lines = [
   },
 ];
 
-const insertMany = db.transaction((lines) => {
+const insertLines = db.transaction((lines) => {
   for (const line of lines) {
     insertLine.run(line);
   }
 });
 
-insertMany(lines);
+insertLines(lines);
 
-// Insert stops
-const insertStop = db.prepare(`
-  INSERT INTO stops (name, line_id, order_number, district)
+// Insert stations
+const insertStation = db.prepare(`
+  INSERT INTO stations (name, line_id, order_number, district)
   VALUES (@name, @line_id, @order_number, @district)
 `);
 
-const stops = [
+const stations = [
   // M2 — line_id: 1
   { name: 'Yenikapı',             line_id: 1, order_number: 1,  district: 'Fatih' },
   { name: 'Vezneciler',           line_id: 1, order_number: 2,  district: 'Fatih' },
@@ -137,14 +137,14 @@ const stops = [
   { name: 'Gebze',                line_id: 4, order_number: 18, district: 'Gebze' },
 ];
 
-const insertStops = db.transaction((stops) => {
-  for (const stop of stops) {
-    insertStop.run(stop);
+const insertStations = db.transaction((stations) => {
+  for (const station of stations) {
+    insertStation.run(station);
   }
 });
 
-insertStops(stops);
+insertStations(stations);
 
 console.log('Seed completed.');
-console.log(`  Lines inserted : ${lines.length}`);
-console.log(`  Stops inserted : ${stops.length}`);
+console.log(`  Lines inserted    : ${lines.length}`);
+console.log(`  Stations inserted : ${stations.length}`);

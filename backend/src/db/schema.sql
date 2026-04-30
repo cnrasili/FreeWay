@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS lines (
   updated_at  TEXT    NOT NULL DEFAULT (datetime('now'))
 );
 
-CREATE TABLE IF NOT EXISTS stops (
+CREATE TABLE IF NOT EXISTS stations (
   id           INTEGER PRIMARY KEY AUTOINCREMENT,
   name         TEXT    NOT NULL,
   line_id      INTEGER NOT NULL REFERENCES lines(id) ON DELETE CASCADE,
