@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const lineService = require('../services/lineService');
+const stationService = require('../services/stationService');
 const { validateCreateLine, validateUpdateLine } = require('../validators/lineValidator');
 
 // GET /api/lines
@@ -43,6 +44,16 @@ router.delete('/:id', (req, res) => {
   const result = lineService.deleteLine(Number(req.params.id));
   if (!result) return res.status(404).json({ error: 'Line not found.' });
   res.status(200).json({ message: 'Line deleted.' });
+});
+
+// GET /api/lines/:lineId/stations
+router.get('/:lineId/stations', (req, res) => {
+  const lineId = Number(req.params.lineId);
+  const line = lineService.getLineById(lineId);
+  if (!line) return res.status(404).json({ error: 'Line not found.' });
+
+  const stations = stationService.getStationsByLine(lineId);
+  res.status(200).json(stations);
 });
 
 module.exports = router;

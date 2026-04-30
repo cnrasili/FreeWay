@@ -3,6 +3,7 @@ const path = require('path');
 
 const linesRouter = require('./routes/lines');
 const stationsRouter = require('./routes/stations');
+const routesRouter = require('./routes/routes');
 
 const app = express();
 
@@ -13,10 +14,8 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '../../frontend')));
 
 // API routes
-app.use('/api/lines', linesRouter);
+app.use('/api/lines', linesRouter);       // includes GET /:lineId/stations
 app.use('/api/stations', stationsRouter);
-
-// Nested route: GET /api/lines/:lineId/stations
-app.use('/api', stationsRouter);
+app.use('/api/routes', routesRouter);
 
 module.exports = app;

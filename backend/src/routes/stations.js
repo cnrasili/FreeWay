@@ -4,16 +4,6 @@ const stationService = require('../services/stationService');
 const lineService = require('../services/lineService');
 const { validateCreateStation, validateUpdateStation } = require('../validators/stationValidator');
 
-// GET /api/lines/:lineId/stations
-router.get('/lines/:lineId/stations', (req, res) => {
-  const lineId = Number(req.params.lineId);
-  const line = lineService.getLineById(lineId);
-  if (!line) return res.status(404).json({ error: 'Line not found.' });
-
-  const stations = stationService.getStationsByLine(lineId);
-  res.status(200).json(stations);
-});
-
 // GET /api/stations/:id
 router.get('/:id', (req, res) => {
   const station = stationService.getStationById(Number(req.params.id));
